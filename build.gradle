@@ -25,12 +25,3 @@ task clean(type: Delete) {
 }
 
 
-task createPom << {
-    pom {
-        project {
-            groupId 'com.frosquivel'
-            artifactId 'scroll-infinite'
-            version '1.0.0'
-        }
-    }.writeTo("build/libs/scroll-infinite-1.0.0.pom")
-}

@@ -25,3 +25,19 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile project(":scrollinfinite")
 }
+
+
+
+def isReleaseBuild(){
+    return version.contains("SNAPSHOT") == false
+}
+
+allprojects {
+    version = VERSION_NAME
+    group = GROUP
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}

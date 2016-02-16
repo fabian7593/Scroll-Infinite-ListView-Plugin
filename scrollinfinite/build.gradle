@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
-
+apply from: '../maven_push.gradle'
 buildscript {
     repositories {
         jcenter()
@@ -13,25 +13,6 @@ buildscript {
 repositories {
     mavenCentral();
 }
-
-bintray {
-    user = 'fabian7593'
-    key = '8d9127c23c61ce8abb4f408583418d75bfca2abc'
-    filesSpec {
-        from 'build/libs'
-        into 'com/frosquivel/scrollinfinite/scroll-infinite/1.0.0'
-    }
-    pkg {
-        repo = 'maven'
-        name = 'scroll-infinite'
-        userOrg = 'fabian7593'
-        version {
-            name = '1.0.0'
-            desc = 'scroll-infinite v1.0.0'
-        }
-    }
-}
-
 
 android {
     compileSdkVersion 23
@@ -57,3 +38,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
 }
+
+
