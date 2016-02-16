@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+    }
+}
+
+repositories {
+    mavenCentral();
+}
+
+bintray {
+    user = 'fabian7593'
+    key = '8d9127c23c61ce8abb4f408583418d75bfca2abc'
+    filesSpec {
+        from 'build/libs'
+        into 'com/frosquivel/scrollinfinite/scroll-infinite/1.0.0'
+    }
+    pkg {
+        repo = 'maven'
+        name = 'scroll-infinite'
+        userOrg = 'fabian7593'
+        version {
+            name = '1.0.0'
+            desc = 'scroll-infinite v1.0.0'
+        }
+    }
+}
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+}
