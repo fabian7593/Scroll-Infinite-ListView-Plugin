@@ -1,10 +1,32 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
-apply plugin: 'maven'
-apply plugin: 'signing'
+//apply from: rootProject.file('../gradle/maven_push.gradle')
 
-version = "1.0.0"
-group = "com.frosquivel"
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'Scroll-Infinite'
+
+    publishedGroupId = 'com.frosquivel'
+    libraryName = 'ScrollInfinite'
+    artifact = 'scroll-infinite'
+
+    libraryDescription = 'A infinite scroll in a list view android'
+
+    siteUrl = 'https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin'
+    gitUrl = 'https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin.git'
+
+    libraryVersion = '1.0'
+
+    developerId = 'frosquiveldev'
+    developerName = 'Fabian Rosales - Frosquivel Developer'
+    developerEmail = 'fabian7593@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+
 
 buildscript {
     repositories {
@@ -38,47 +60,6 @@ android {
 }
 
 
-uploadArchives {
-    configuration = configurations.archives
-    repositories.mavenDeployer {
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-        repository(url: 'https://issues.sonatype.org/browse/OSSRH-20611') {
-            authentication(userName: 'fabian7593',
-                    password: 'choper182')
-        }
-
-        pom.project {
-            name 'Scroll Infinite'
-            packaging 'aar'
-            description 'A scroll infinite in a list view android'
-            url 'https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin'
-
-            scm {
-                url 'scm:git@github.com:fabian7593/https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin.git'
-                connection 'scm:git@github.com:fabian7593/https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin.git'
-                developerConnection 'scm:git@github.com:fabian7593/https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin.git'
-            }
-
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-
-            developers {
-                developer {
-                    id 'frosdev'
-                    name 'Fabian Rosales -  Frosquivel Developer'
-                    email 'fabian7593@gmail.com'
-                }
-            }
-        }
-    }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -86,34 +67,97 @@ dependencies {
 }
 
 
-task createPom << {
-    pom {
-        project {
-            groupId 'com.frosquivel'
-            artifactId 'Scroll-Infinite'
-            version '1.0.0'
 
-            inceptionYear '2016'
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
+
+// Place it at the end of the file
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = publishedGroupId                               // Maven Group ID for the artifact
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId publishedGroupId
+                artifactId artifact
+
+                // Add your description here
+                name libraryName
+                description libraryDescription
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+
                 }
             }
         }
-    }.writeTo("pom.xml")
-}
-
-
-
-configurations {
-    archives {
-        extendsFrom configurations.default
     }
 }
 
-signing {
-    required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
+
+apply plugin: 'com.jfrog.bintray'
+
+version = libraryVersion
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+
+        }
+    }
 }
