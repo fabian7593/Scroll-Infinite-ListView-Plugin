@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Scroll-Infinite-ListView-Plugin.iml" filepath="$PROJECT_DIR$/Scroll-Infinite-ListView-Plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Scroll Infinite.iml" filepath="$PROJECT_DIR$/Scroll Infinite.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/scrollinfinite/scrollinfinite.iml" filepath="$PROJECT_DIR$/scrollinfinite/scrollinfinite.iml" />
     </modules>
