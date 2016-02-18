@@ -1,6 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
-apply from: '../maven_push.gradle'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+version = "1.0.0"
+group = "com.frosquivel"
+
 buildscript {
     repositories {
         jcenter()
@@ -33,6 +38,47 @@ android {
 }
 
 
+uploadArchives {
+    configuration = configurations.archives
+    repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+        repository(url: 'https://issues.sonatype.org/browse/OSSRH-20611') {
+            authentication(userName: 'fabian7593',
+                    password: 'choper182')
+        }
+
+        pom.project {
+            name 'Scroll Infinite'
+            packaging 'aar'
+            description 'A scroll infinite in a list view android'
+            url 'https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin'
+
+            scm {
+                url 'scm:git@github.com:fabian7593/https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin.git'
+                connection 'scm:git@github.com:fabian7593/https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin.git'
+                developerConnection 'scm:git@github.com:fabian7593/https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin.git'
+            }
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+
+            developers {
+                developer {
+                    id 'frosdev'
+                    name 'Fabian Rosales -  Frosquivel Developer'
+                    email 'fabian7593@gmail.com'
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -40,3 +86,34 @@ dependencies {
 }
 
 
+task createPom << {
+    pom {
+        project {
+            groupId 'com.frosquivel'
+            artifactId 'Scroll-Infinite'
+            version '1.0.0'
+
+            inceptionYear '2016'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("pom.xml")
+}
+
+
+
+configurations {
+    archives {
+        extendsFrom configurations.default
+    }
+}
+
+signing {
+    required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}

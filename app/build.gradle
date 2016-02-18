@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -26,18 +27,3 @@ dependencies {
     compile project(":scrollinfinite")
 }
 
-
-
-def isReleaseBuild(){
-    return version.contains("SNAPSHOT") == false
-}
-
-allprojects {
-    version = VERSION_NAME
-    group = GROUP
-
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-}
