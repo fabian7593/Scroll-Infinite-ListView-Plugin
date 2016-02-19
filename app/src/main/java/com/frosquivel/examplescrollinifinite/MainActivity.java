@@ -9,8 +9,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.frosquivel.scrollinfinite.ScrollInfiniteAdapter;
-import com.frosquivel.scrollinfinite.ScrollInfiniteListener;
+//irt com.frosquivel.scrollinfinite.ScrollInfiniteAdapter;
+//import com.frosquivel.scrollinfinite.ScrollInfiniteListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         //The user need to override the getview, for load data in the items of row, remember your data lists are of Object class,
         //you need to convert this in the class that you needed.
         //pd: (is not necesary call the super method)
-        ScrollInfiniteAdapter adapter = new ScrollInfiniteAdapter(this, valueExample, R.layout.activity_row_item_list, 16, 10){
+       /* ScrollInfiniteAdapter adapter = new ScrollInfiniteAdapter(this, valueExample, R.layout.activity_row_item_list, 16, 10){
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         //call the new instance class of ScrollInfiniteListener, you need to pass the adapter and the progressBar.
         listView.setOnScrollListener(new ScrollInfiniteListener(adapter, progressBar));
 
-
+*/
         //in otherwise you call the same class, but you set the delay of progressBar, with another param.
         //like this
         //listView.setOnScrollListener(new ScrollInfiniteListener(adapter,progressBar,600));
