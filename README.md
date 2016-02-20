@@ -1,7 +1,6 @@
 # [Scroll Infinite ListView](https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin)
 
 This is a plugin of Infinite Sroll in the ListView Android.
-
 <br><br>
 
 ## SDK
@@ -50,7 +49,9 @@ You don't need the Adapter class for your list view, only need, the progress bar
 This example have any quantity of objects in a Array Adapter, this array adapter was added in your list view ListView
 
 ####The layout example
-![alt tag](https://photos-1.dropbox.com/t/2/AACZVrHYmY-MHQib2smGBIZYFMe2xtXT2j_4zVT1dMUfsw/12/430958517/jpeg/32x32/1/_/1/2/Scroll-Infinite-ListView-Plugin%20-%20%5BCUsersFabianDesktopFrosquivelProyectosScroll%20Infinite%5D%20-%20%5Bapp%5D%20-%20...appsrcmainreslayoutprogress.jpg/ELe61LsDGBYgAigC/qFIN9EvKGzmNZcanZ3kT5y-BTRB9zD9X10iQvZEcW7k?size=1024x768&size_mode=3)
+![LayoutExample](https://www.dropbox.com/s/21ikt7pf4tt4zkz/Scroll-Infinite-ListView-Plugin%20-%20%5BCUsersFabianDesktopFrosquivelProyectosScroll%20Infinite%5D%20-%20%5Bapp%5D%20-%20...appsrcmainreslayoutprogress.jpg)
+
+
 
 ####Code Implementation
 This is only for example, you need to convert the Object for the respective class do you need, in this case, String.
