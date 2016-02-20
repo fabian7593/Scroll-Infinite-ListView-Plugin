@@ -9,7 +9,9 @@
   <packaging>jar</packaging>
 
   <name>scrollinfinite</name>
-  <url>https://bintray.com/fabian7593/maven/Scroll-Infinite/view#files/com/frosquivel/scrollinfinite/2.0</url>
+  <url>https://bintray.com/fabian7593/maven/Scroll-Infinite/</url>
+  <!--<url>https://bintray.com/fabian7593/maven/Scroll-Infinite/view#files/com/frosquivel/scrollinfinite/2.0</url>-->
+
 
   <inceptionYear>2016</inceptionYear>
   <licenses>
