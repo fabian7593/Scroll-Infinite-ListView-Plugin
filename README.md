@@ -49,7 +49,7 @@ You don't need the Adapter class for your list view, only need, the progress bar
 This example have any quantity of objects in a Array Adapter, this array adapter was added in your list view ListView
 
 ####The layout example
-![LayoutExample](https://www.dropbox.com/s/21ikt7pf4tt4zkz/Scroll-Infinite-ListView-Plugin%20-%20%5BCUsersFabianDesktopFrosquivelProyectosScroll%20Infinite%5D%20-%20%5Bapp%5D%20-%20...appsrcmainreslayoutprogress.jpg)
+![LayoutExample](scroll.jpg)
 
 
 
