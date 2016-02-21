@@ -21,6 +21,8 @@ git clone https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin.git
 
 Or download from [Here](https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin/zipball/master)
 
+And another type download by Bintray from [ ![Download](https://api.bintray.com/packages/fabian7593/maven/Scroll-Infinite/images/download.svg) ](https://bintray.com/fabian7593/maven/Scroll-Infinite/_latestVersion)
+
 <br><br>
 ### How to use
 
@@ -66,7 +68,16 @@ List<Object> YourObjectList = new ArrayList<Object>();
 ```
 
 <br>
-And the implementation is:
+And the implementation is, first realize the import
+
+```bash
+import com.frosquivel.scrollinfinite.ScrollInfiniteAdapter;
+import com.frosquivel.scrollinfinite.ScrollInfiniteListener;
+```
+
+<br>
+and second create an instance:
+
 ```bash
  ScrollInfiniteAdapter adapter = new ScrollInfiniteAdapter(this, YourObjectList, R.layout.activity_row_item_list, 16, 10){
             @Override
