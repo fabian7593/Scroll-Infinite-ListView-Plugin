@@ -111,7 +111,7 @@ All the code has a internal documentation for more explanation of this example.
 
 <br><br>
 ##Preview of Example
-![alt tag](http://es.bloggif.com/output/1/d/1d4b0e1a54c065e55d8a6c69b57ddadf.gif?1455994530)
+![alt tag](https://github.com/fabian7593/Scroll-Infinite-ListView-Plugin/blob/master/video.gif)
 
 
 <br><br>
